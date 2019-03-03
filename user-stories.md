@@ -29,3 +29,5 @@ As the client I want to see a user friendly site.
 As the client I want the data to be clear and free of file extensions.
 
 As the client I want the dumbest users to not be able to mess it up aka user input verification.
+
+As the client I want the infromation displayed to be accurate.
