@@ -3,6 +3,7 @@
 var pictureOne = document.getElementById('pictureOne');
 var pictureTwo = document.getElementById('pictureTwo');
 var pictureThree = document.getElementById('pictureThree');
+var resultsTable = document.getElementById('resultsTable');
 
 var imgs = [];
 var turnCount = 0;
@@ -77,7 +78,6 @@ function render(currentPictures) {
   pictureTwo.alt = currentPictures[1].name;
   pictureTwo.title = currentPictures[1].displayName;
 
-
   pictureThree.src = currentPictures[2].filepath;
   pictureThree.alt = currentPictures[2].name;
   pictureThree.title = currentPictures[2].displayName;
@@ -89,8 +89,58 @@ function render(currentPictures) {
 
 function handleClick(event) {
   console.log('target, ', event.target);
-  if (turnCount < 25) {
+  if (turnCount < 26) {
+    increaseClickCount(event.target.title);
     oneTurn();
-    console.log(event.target);
+    //console.log('event.target.src', event.target.src);
+  } else if (turnCount === 26) {
+    createTable();
+    turnCount++;
+  } else {
+    return;
+  }
+}
+
+function increaseClickCount(title) {
+  for (var i = 0; i < imgs.length; i++) {
+    //console.log('increaseClickCount:' + title + ' - ' + imgs[i].displayName );
+    if (imgs[i].displayName === title) {
+      imgs[i].clicks++;
+      break;
+    }
+  }
+}
+
+function createTable() {
+  var row = document.createElement('tr');
+  var headerName = document.createElement('td');
+  headerName.innerText = 'Name';
+  row.appendChild(headerName);
+
+  var headerTotalClicks = document.createElement('td');
+  headerTotalClicks.innerText = 'Total Clicks';
+  row.appendChild(headerTotalClicks);
+
+  var headerPercentClicked = document.createElement('td');
+  headerPercentClicked.innerText = 'Percent Clicked';
+  row.appendChild(headerPercentClicked);
+
+  resultsTable.appendChild(row);
+
+  for (var i = 0; i < imgs.length; i++) {
+    var imgRow = document.createElement('tr');
+    var nameData = document.createElement('td');
+    nameData.innerText = imgs[i].displayName;
+    imgRow.appendChild(nameData);
+
+    var totalClicksData = document.createElement('td');
+    totalClicksData.innerText = imgs[i].clicks;
+    imgRow.appendChild(totalClicksData);
+
+    var totalPercentClicked = document.createElement('td');
+    totalPercentClicked.innerText = (Math.floor((imgs[i].clicks / imgs[i].views) * 100) + '%');
+    imgRow.appendChild(totalPercentClicked);
+
+    resultsTable.appendChild(imgRow);
   }
 }
