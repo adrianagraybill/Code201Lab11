@@ -139,7 +139,11 @@ function createTable() {
     imgRow.appendChild(totalClicksData);
 
     var totalPercentClicked = document.createElement('td');
-    totalPercentClicked.innerText = (Math.floor((imgs[i].clicks / imgs[i].views) * 100) + '%');
+    var percentage = (Math.floor((imgs[i].clicks / imgs[i].views) * 100));
+    if (isNaN (percentage)) {
+      percentage = 0;
+    }
+    totalPercentClicked.innerText = (percentage + '%');
     imgRow.appendChild(totalPercentClicked);
 
     resultsTable.appendChild(imgRow);
