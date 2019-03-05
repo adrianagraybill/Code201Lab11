@@ -70,15 +70,12 @@ function oneTurn() {
 
 function render(currentPictures) {
   pictureOne.src = currentPictures[0].filepath;
-  pictureOne.alt = currentPictures[0].name;
   pictureOne.title = currentPictures[0].displayName;
 
   pictureTwo.src = currentPictures[1].filepath;
-  pictureTwo.alt = currentPictures[1].name;
   pictureTwo.title = currentPictures[1].displayName;
 
   pictureThree.src = currentPictures[2].filepath;
-  pictureThree.alt = currentPictures[2].name;
   pictureThree.title = currentPictures[2].displayName;
 
   pictureOne.addEventListener('click', handleClick);
