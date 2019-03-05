@@ -39,7 +39,6 @@ new BusMallPictures('usb.gif', 'USB');
 new BusMallPictures('water-can.jpg', 'Water Can');
 new BusMallPictures('wine-glass.jpg', 'Wine Glass');
 
-
 function choosePictures() {
   let currentPictures = [];
   do {
@@ -88,11 +87,9 @@ function render(currentPictures) {
 }
 
 function handleClick(event) {
-  console.log('target, ', event.target);
   if (turnCount < 26) {
     increaseClickCount(event.target.title);
     oneTurn();
-    //console.log('event.target.src', event.target.src);
   } else if (turnCount === 26) {
     createTable();
     turnCount++;
@@ -103,7 +100,6 @@ function handleClick(event) {
 
 function increaseClickCount(title) {
   for (var i = 0; i < imgs.length; i++) {
-    //console.log('increaseClickCount:' + title + ' - ' + imgs[i].displayName );
     if (imgs[i].displayName === title) {
       imgs[i].clicks++;
       break;
@@ -114,8 +110,12 @@ function increaseClickCount(title) {
 function createTable() {
   var row = document.createElement('tr');
   var headerName = document.createElement('td');
-  headerName.innerText = 'Name';
+  headerName.innerText = 'Item Name';
   row.appendChild(headerName);
+
+  var headerTotalViews = document.createElement('td');
+  headerTotalViews.innerText = 'Times Displayed';
+  row.appendChild(headerTotalViews);
 
   var headerTotalClicks = document.createElement('td');
   headerTotalClicks.innerText = 'Total Clicks';
@@ -132,6 +132,10 @@ function createTable() {
     var nameData = document.createElement('td');
     nameData.innerText = imgs[i].displayName;
     imgRow.appendChild(nameData);
+
+    var totalViewsData = document.createElement('td');
+    totalViewsData.innerText = imgs[i].views;
+    imgRow.appendChild(totalViewsData);
 
     var totalClicksData = document.createElement('td');
     totalClicksData.innerText = imgs[i].clicks;
