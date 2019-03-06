@@ -40,7 +40,7 @@ new BusMallPictures('water-can.jpg', 'Water Can');
 new BusMallPictures('wine-glass.jpg', 'Wine Glass');
 
 function choosePictures() {
-  let currentPictures = [];
+  var currentPictures = [];
   do {
     do {
       var randomNumber = Math.floor(Math.random() * imgs.length);
