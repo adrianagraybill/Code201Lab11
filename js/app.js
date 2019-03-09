@@ -84,10 +84,10 @@ function render(currentPictures) {
 }
 
 function handleClick(event) {
-  if (turnCount < 26) {
+  if (turnCount < 25) {
     increaseClickCount(event.target.title);
     oneTurn();
-  } else if (turnCount === 26) {
+  } else if (turnCount === 25) {
     createTable();
     turnCount++;
   } else {
